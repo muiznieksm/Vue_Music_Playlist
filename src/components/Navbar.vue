@@ -1,18 +1,42 @@
 <template>
   <div class="navbar">
     <nav>
-      <img src="audiomack.svg" alt="Logo" />
+      <img src="/audiomack.svg" alt="Logo" />
       <h1><router-link :to="{ name: 'Home' }">Music Playlist</router-link></h1>
       <div class="links">
-        <button>Logout</button>
-        <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
-        <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
+        <div v-if="user">
+          <button @click="handleClick">Logout</button>
+        </div>
+        <div v-if="!user">
+          <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
+          <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
 </template>
 
-<script></script>
+<script>
+import getUser from "@/composables/getUser";
+import useLogout from "@/composables/useLogout";
+import { useRouter } from "vue-router";
+
+export default {
+  setup() {
+    const { user } = getUser();
+    const { logout } = useLogout();
+    const router = useRouter();
+
+    const handleClick = async () => {
+      await logout();
+      console.log("user logged out!");
+      router.push({ name: "Login" });
+    };
+
+    return { handleClick, logout, user };
+  },
+};
+</script>
 
 <style scoped>
 .navbar {
