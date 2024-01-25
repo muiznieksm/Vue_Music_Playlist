@@ -6,8 +6,9 @@
       <div class="links">
         <div v-if="user">
           <button @click="handleClick">Logout</button>
+          <router-link :to="{name: 'CreatePlaylist'}">Create playlist</router-link>
         </div>
-        <div v-if="!user">
+        <div v-else>
           <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
           <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
         </div>
@@ -29,11 +30,10 @@ export default {
 
     const handleClick = async () => {
       await logout();
-      console.log("user logged out!");
       router.push({ name: "Login" });
     };
 
-    return { handleClick, logout, user };
+    return { handleClick, user };
   },
 };
 </script>

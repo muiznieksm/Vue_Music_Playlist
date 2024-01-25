@@ -21,6 +21,7 @@ export default {
     const email = ref("");
     const password = ref("");
     const displayName = ref("");
+    
 
     const handleSubmit = async () => {
       const res = await signup(email.value, password.value, displayName.value);
