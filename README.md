@@ -34,3 +34,5 @@ Navigate to `localhost:8080` in your browser to view the app.
 - [Firebase](https://firebase.google.com/docs)
 - [Vue Router](https://router.vuejs.org/)
 
+## Preview
+<img src="Preview_Music_Playlist.gif" alt="Preview" width="800">
